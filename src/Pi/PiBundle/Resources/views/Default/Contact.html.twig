@@ -1,0 +1,121 @@
+{% extends "PiPiBundle::layout.html.twig" %}
+
+{% block content %}
+<!-- Google map javascript api v3 -->
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD45Nu6JYgh1oKG5G9ut7Nr4QW48gx-6ug&amp;sensor=false"></script>
+<div id="breadcrumb-container">
+        		<div class="container">
+					<ul class="breadcrumb">
+						<li><a href="index-2.html">Home</a></li>
+						<li class="active">Contact Us</li>
+					</ul>
+        		</div>
+        	</div>
+        	<div class="container">
+        		<div class="row">
+        			<div class="col-md-12">
+						<header class="content-title">
+							<h1 class="title">Contact Us</h1>
+							<p class="title-desc">We love to here from you. Lets get in touch.</p>
+						</header>
+        				<div class="xs-margin"></div><!-- space -->
+        				<div class="row">
+        					
+        					<div class="col-md-12">
+								<div id="map">
+									<!-- Google - Map - Api -->	
+								</div><!-- End #map -->
+        					</div><!-- End .col-md-12 -->
+							
+        					<div class="col-md-8 col-sm-8 col-xs-12">
+                                                    <h2 class="sub-title" id="a">LEAVE COMMENT</h2>
+        						<div class="row" id="formcontact">
+                                                            <form action="{{ path('pi_pi_contact')}}" id="contact-form" method="POST">
+                                                                {{form_errors(form)}}
+        								<div class="col-md-6 col-sm-12 col-xs-12">
+											<div class="input-group">
+												<span class="input-group-addon"><span class="input-icon input-icon-user"></span><span class="input-text">Name&#42;</span></span>
+												{{ form_widget(form.nom , { 'attr': {'placeholder': 'Nom', 'id': 'nom', 'class' : 'form-control input-lg'} } ) }}
+											</div><!-- End .input-group -->
+        									<div class="input-group">
+												<span class="input-group-addon"><span class="input-icon input-icon-email"></span><span class="input-text">Email&#42;</span></span>
+												{{ form_widget(form.email , { 'attr': {'placeholder': 'Mail', 'id': 'mail', 'class' : 'form-control input-lg'} }) }}
+											</div><!-- End .input-group -->
+        									<div class="input-group">
+												<span class="input-group-addon"><span class="input-icon input-icon-subject"></span><span class="input-text">Subject&#42;</span></span>
+												{{ form_widget(form.object , { 'attr': {'placeholder': 'Sujet', 'id': 'sujet', 'class' : 'form-control input-lg'} }) }}
+											</div><!-- End .input-group -->
+        									<p class="item-desc">Your email address will not be published. Required 
+fields are marked *</p>
+        								</div><!-- End .col-md-6 -->
+        								
+        								<div class="col-md-6 col-sm-12 col-xs-12">
+											<div class="input-group textarea-container">
+												<span class="input-group-addon"><span class="input-icon input-icon-message"></span><span class="input-text">Your Comment</span></span>
+												{{ form_widget(form.message , { 'attr': {'placeholder': 'Message', 'id': 'message', 'class' : 'form-control','cols':'30', 'rows':'6'} }) }}
+											</div><!-- End .input-group -->
+                                                                                         {{ form_rest(form) }}
+                                                                                        <input type="submit" value="SUBMIT" class="btn btn-custom-2 md-margin"><div class="loading"><img src="{{ asset('bundles/pipi/images/loading.gif')}}" width="30" height="30"/></div>
+        								</div><!-- End .col-md-6 -->
+        							</form>
+        						</div><!-- End .row -->
+        						
+        					</div><!-- End .col-md-8 -->
+        					
+        					<div class="col-md-4 col-sm-4 col-xs-12">
+        						<h2 class="sub-title">CONTACT DETAILS</h2>
+        						<ul class="contact-details-list">
+        							<li>
+										<span class="contact-icon contact-icon-phone"></span>
+										<ul>
+											<li>0203 280 3703</li>
+											<li>0203 281 3704</li>
+										</ul>
+        							</li>
+        							<li>
+										<span class="contact-icon contact-icon-mobile"></span>
+										<ul>
+											<li>445-115-747-38</li>
+											<li>445-170-029-32</li>
+										</ul>
+        							</li>
+        							<li>
+										<span class="contact-icon contact-icon-email"></span>
+										<ul>
+											<li>Venedor@gmail.com</li>
+											<li>Venedor@aol.com</li>
+										</ul>
+        							</li>
+        							<li>
+										<span class="contact-icon contact-icon-skype"></span>
+										<ul>
+											<li>Venedor_store</li>
+											<li>Venedor_support</li>
+										</ul>
+        							</li>
+        						</ul>
+        					</div><!-- End .col-md-4 -->
+        				</div><!-- End .row -->
+        				
+        			</div><!-- End .col-md-12 -->
+        		</div><!-- End .row -->
+			</div><!-- End .container -->
+<script>
+    $(".loading").hide();
+    $("#contact-form").submit(function(){ 
+    $(".loading").show();
+    $.ajax({
+        type: "POST",
+        url: "{{ path('pi_pi_contact')}}",
+        data: $('form').serialize(),
+        cache: false,
+        success: function(data){
+           $('#a').html(' <div class="col-md-3 col-sm-4 col-xs-12 sidebar"><h3>Thank you for Contact</h3></div>');
+           $(".loading").hide();
+           $("#formcontact").hide();
+        }
+    });    
+    return false;
+});
+</script>
+{% endblock %}        

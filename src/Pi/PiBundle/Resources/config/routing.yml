@@ -1,0 +1,57 @@
+pi_pi_homepage:
+    pattern:  /
+    defaults: { _controller: PiPiBundle:Default:index }
+pi_pi_contact:
+    pattern:  /contact/
+    defaults: { _controller: PiPiBundle:Default:contact }
+pi_pi_deal:
+    pattern:  /Deal/
+    defaults: { _controller: PiPiBundle:Default:Liste }
+pi_pi_deal1:
+    pattern:  /Deal1/
+    defaults: { _controller: PiPiBundle:Default:Liste1 }
+pi_pi_dealpasse:
+    pattern:  /Deal-passes/
+    defaults: { _controller: PiPiBundle:Default:listepasse }
+pi_pi_panier:
+    pattern:  /Panier/{id}
+    defaults: { _controller: PiPiBundle:Default:Panier }
+pi_pi_dealprofil:
+    pattern:  /Deal/Profil/{id}
+    defaults: { _controller: PiPiBundle:Default:Profil }
+pi_pi_reservation:
+    pattern:  /reservation/
+    defaults: { _controller: PiPiBundle:Default:Reserver }
+pi_pi_refresh:
+    pattern:  /Refresh/
+    defaults: { _controller: PiPiBundle:Default:Refresh }
+pi_pi_search:
+    pattern:  /search/
+    defaults: { _controller: PiPiBundle:Default:search }
+pi_pi_check:
+    pattern:  /checkout/
+    defaults: { _controller: PiPiBundle:Default:Checkout }    
+chart:
+    pattern: /stat
+    defaults: { _controller: PiPiBundle:Stat:Stat }
+
+
+
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /profile
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /profile

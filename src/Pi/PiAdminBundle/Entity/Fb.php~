@@ -1,0 +1,39 @@
+<?php
+
+namespace Pi\PiAdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Fb
+ *
+ * @ORM\Table(name="fb")
+ * @ORM\Entity
+ */
+class Fb
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="idpseudo", type="string", length=30, nullable=false)
+     */
+    private $idpseudo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=50, nullable=false)
+     */
+    private $email;
+
+
+}

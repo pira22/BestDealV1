@@ -1,0 +1,11 @@
+services:
+     pi_pi.registration.form.type:
+            class: Pi\PiBundle\Form\Type\RegistrationFormType
+            arguments: [%fos_user.model.user.class%]
+            tags:
+                - { name: form.type , alias: pi_pibundle_registration}
+     pi_pi.registration.form.type.profile:
+            class: Pi\PiBundle\Form\Type\ProfileFormType
+            arguments: [%fos_user.model.user.class%]
+            tags:
+                - { name: form.type , alias: pi_pibundle_edit}

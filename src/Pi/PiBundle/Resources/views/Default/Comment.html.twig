@@ -1,0 +1,30 @@
+    <header class="title-bg">
+                    {% for nbrs in nbr  %}
+                    <h3>COMMENTS ({{ nbrs.Note }}) </h3>
+                    {% endfor %}
+                </header>
+                <ul class="comments-list">
+                    {% for i in avis %}
+                    <li>
+
+
+                        <div class="comment clearfix">
+                            <figure>
+
+                            </figure>
+                            <div class="comment-details">
+                                <div class="comment-title">
+                                    <div class="ratings-container">
+
+                                        Note: {{ render(controller('PiPiBundle:Default:NoteDuDeal' ,  {'id': i.id} ) ) }}
+                                    </div>
+                                </div><!-- End .comment-title -->
+                                <p><b>Commentaire: </b> {{i.commentaire}}</p>
+                            </div><!-- End .comment-details -->
+
+                        </div><!-- End .comment -->
+
+
+                    </li>
+                    {% endfor %}
+              </ul>

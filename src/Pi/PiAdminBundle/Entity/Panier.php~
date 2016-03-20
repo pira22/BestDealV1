@@ -1,0 +1,42 @@
+<?php
+
+namespace Pi\PiAdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Panier
+ *
+ * @ORM\Table(name="panier", uniqueConstraints={@ORM\UniqueConstraint(name="deal_Ref", columns={"deal_Ref"})})
+ * @ORM\Entity
+ */
+class Panier
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cle", type="string", length=255, nullable=false)
+     */
+    private $cle;
+
+    /**
+     * @var \Deal
+     *
+     * @ORM\ManyToOne(targetEntity="Deal")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="deal_Ref", referencedColumnName="ref")
+     * })
+     */
+    private $dealRef;
+
+
+}

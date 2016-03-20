@@ -1,0 +1,210 @@
+{% extends "PiPiBundle::layout.html.twig" %}
+{%block entete%}
+
+<!-- Inclusion de l'API Google MAPS -->
+<!-- Le paramètre "sensor" indique si cette application utilise détecteur pour déterminer la position de l'utilisateur -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaj6QQWdX5Oe0LKHl7zbVkEzO0ce8ZQjI&sensor=false"></script>
+<script type="text/javascript">
+    var stockholm = new google.maps.LatLng({{deal.x}}, {{deal.y}});
+    var parliament = new google.maps.LatLng({{deal.x}}, {{deal.y}});
+    var marker;
+    var map;
+    function initialiser() {
+        var mapOptions = {
+            zoom: 13,
+            center: stockholm,
+            panControl: true,
+            zoomControl: true,
+            scaleControl: true
+        };
+        var map = new google.maps.Map(document.getElementById("mapp"),
+                mapOptions);
+        marker = new google.maps.Marker({
+            map: map,
+            draggable: true,
+            animation: google.maps.Animation.DROP,
+            position: parliament
+        });
+        google.maps.event.addListener(marker, 'click', toggleBounce);
+    }
+    function toggleBounce() {
+
+        if (marker.getAnimation() != null) {
+            marker.setAnimation(null);
+        } else {
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>   
+{%endblock%}
+
+{% block content %}
+
+<div id="breadcrumb-container">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="index-2.html">Home</a></li>
+            <li class="active">Product</li>
+        </ul>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="row">
+
+                <div class="col-md-6 col-sm-12 col-xs-12 product-viewer clearfix">
+
+
+
+                    <div id="product-image-container">
+                        <figure><img src="{{asset('bundles/PiPi/images/'~deal.chemin)}}" alt="Product Big image" id="product-image" data-big="images/products/big-phone1.jpg">
+                            <figcaption class="item-price-container">
+                                <span class="old-price">${{deal.prix1}}</span>
+                                <span class="item-price">${{deal.prix1-((deal.prix1*deal.tauxred)/100)}}</span>
+                            </figcaption>
+                        </figure>
+                    </div><!-- product-image-container -->        				 
+                </div><!-- End .col-md-6 -->
+
+                <div class="col-md-6 col-sm-12 col-xs-12 product">
+                    <div class="lg-margin visible-sm visible-xs"></div><!-- Space -->
+                    <h1 class="product-name">{{deal.nom}}</h1>
+                    <div class="ratings-container">
+
+									 {{ render(controller('PiPiBundle:Default:NoteDeal' ,  {'id': deal.ref} ) ) }}
+                    </div>
+
+
+
+                    <div class="product-add clearfix">
+                        {% if (deal.datefin|date('U')>'now'|date('U'))%}
+                       {{ render(controller('PiPiBundle:Default:Panier' , {'id':deal.ref} )) }}
+                           <span  data-time="{{deal.datefin|date('U')}}" class="kkcountdown-1"></span>
+
+                        {%else%}
+                                        <div class="item-action">
+                                            <p>Expiré</p>
+                                        </div><!-- End .item-action -->
+                                        {%endif%}
+                    </div><!-- .product-add -->
+                    <div class="md-margin"></div><!-- Space -->
+                    <div class="product-extra clearfix">
+                        <div class="product-extra-box-container clearfix">
+                             {{deal.description}}
+                        </div>
+                        <div class="md-margin visible-xs"></div>
+                        <div class="share-button-group">
+                            <!-- AddThis Button BEGIN -->
+                            <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+                                <a class="addthis_button_facebook"></a>
+                                <a class="addthis_button_twitter"></a>
+                                <a class="addthis_button_email"></a>
+                                <a class="addthis_button_print"></a>
+                                <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
+                            </div>
+                            <script type="text/javascript">var addthis_config = {"data_track_addressbar": true};</script>
+                            <script type="text/javascript" src="../../../../s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52b2197865ea0183"></script>
+                            <!-- AddThis Button END -->
+                        </div><!-- End .share-button-group -->
+                    </div>
+                </div><!-- End .col-md-6 -->
+
+
+            </div><!-- End .row -->
+
+            <div class="lg-margin2x"></div><!-- End .space -->
+
+
+
+
+            <div style="width: 700px;height: 350px" id="mapp"></div>
+
+            <div class="lg-margin2x"></div><!-- Space -->
+
+
+            <div class="comments">
+                <div id="loadc">
+                    <header class="title-bg" >
+                    {% for nbrs in nbr  %}
+                        <h3>COMMENTS ({{ nbrs.Note }}) </h3>
+                    {% endfor %}
+                    </header>
+                    <ul class="comments-list" >
+                    {% for i in avis %}
+                        <li>
+
+
+                            <div class="comment clearfix">
+                                <figure>
+                                    <img src="{{asset('bundles/pipi/images/imagep.png')}}" style="height: 60px;width: 60px"alt="Comment Author">
+                                </figure>
+                                <div class="comment-details">
+                                    <div class="comment-title">
+                                        <div class="ratings-container">
+
+                                            Note: {{ render(controller('PiPiBundle:Default:NoteDuDeal' ,  {'id': i.id} ) ) }}
+                                        </div>
+                                    </div><!-- End .comment-title -->
+                                    <p><b>Commentaire: </b> {{i.commentaire}}</p>
+                                </div><!-- End .comment-details -->
+
+                            </div><!-- End .comment -->
+
+
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
+                                     <div class="row">
+                    <form action="{{ path('pi_pi_dealprofil',{'id':deal.ref})}}" method='POST' id="comment-form" class="fcomm" >
+
+
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <span class="input-group-addon"><span class="input-icon input-icon-message"></span><span class="input-text">Note: </span></span>
+                                {{ form_widget(form.note,{'attr':{'id':'note'} }) }}
+                            <div class="input-group textarea-container">
+                                <span class="input-group-addon"><span class="input-icon input-icon-message"></span><span class="input-text">Your Comment&#42;</span></span>
+
+                                {{ form_widget(form.commentaire , {'attr': {'class' : 'form-control' , 'id' : 'commentaire' , 'cols' : '30' , 'rows' : '6' , 'placeholder' : 'Your Comment'} }) }}
+                            </div><!-- End .input-group -->
+                           {{form_rest(form)}}
+                            {{form_errors(form)}}
+                            <input type="submit" value="POST COMMENT" class="btn btn-custom-2">
+                            <div class="loading"><img style="margin-left: 50%" src="{{ asset('bundles/pipi/images/loading.gif')}}" width="10" height="10"/></div>
+                        </div><!-- End .col-md-6 -->
+                    </form>
+                </div><!-- End .row -->     
+                                    {% else %}
+                                                <p class="header-text">Pour commenté Vous devez être connecté!</p>
+                                                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>&nbsp;or&nbsp;<a href="{{path('fos_user_registration_register')}}">create an account</a>
+                                    {% endif %}
+             
+            </div><!-- End .comments -->
+
+        </div><!-- End .col-md-12 -->
+    </div><!-- End .row -->
+</div><!-- End .container -->
+<script>
+    $(".loading").hide();
+    $('.fcomm').submit(function() {
+        $(".loading").show();
+        $.ajax({
+            type: "POST",
+            url: "{{ path('pi_pi_dealprofil',{'id':deal.ref})}}",
+            data: $('.fcomm').serialize(),
+            cache: false,
+            success: function(data) {
+                $("#loadc").html(data);
+                $(".loading").hide();
+            }
+        });
+        return false;
+    });
+</script>  
+                        {%endblock%}

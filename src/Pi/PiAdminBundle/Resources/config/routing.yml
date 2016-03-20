@@ -1,0 +1,3 @@
+admin_so:
+     pattern:  /admin
+     defaults: { _controller: PiPiAdminBundle:Test:index }

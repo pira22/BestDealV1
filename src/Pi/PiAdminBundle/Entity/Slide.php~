@@ -1,0 +1,42 @@
+<?php
+
+namespace Pi\PiAdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Slide
+ *
+ * @ORM\Table(name="slide", indexes={@ORM\Index(name="deal_Ref", columns={"deal_Ref"})})
+ * @ORM\Entity
+ */
+class Slide
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=255, nullable=false)
+     */
+    private $image;
+
+    /**
+     * @var \Deal
+     *
+     * @ORM\ManyToOne(targetEntity="Deal")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="deal_Ref", referencedColumnName="ref")
+     * })
+     */
+    private $dealRef;
+
+
+}

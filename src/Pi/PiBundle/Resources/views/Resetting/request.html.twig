@@ -1,0 +1,17 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+<div class="container">
+    <div class="row">
+        <div class="xs-margin"></div><!-- space -->
+        <div class="xs-margin"></div><!-- space -->
+        <div class="col-md-12">
+            <header class="content-title">
+                <h1 class="title">Rénitialiser votre mot de passe</h1>
+            </header>
+            <div class="xs-margin"></div><!-- space -->
+{% include "FOSUserBundle:Resetting:request_content.html.twig" %}
+   </div>
+</div>
+</div>
+{% endblock fos_user_content %}

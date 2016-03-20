@@ -1,0 +1,12 @@
+<div class="ratings">
+{% for notes in note%}
+    <div class="ratings-result" data-result="{{notes.Note * 20}}"></div>
+
+{%endfor%}
+</div><!-- End .ratings -->
+
+<span class="ratings-amount">
+        {% for nbrs in nbr%}
+         {{nbrs.Note}} Vote
+        {%endfor%}
+</span>

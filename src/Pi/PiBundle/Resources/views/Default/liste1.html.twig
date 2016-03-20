@@ -1,0 +1,51 @@
+{% extends "PiPiBundle::layout.html.twig" %}
+
+{% block content %} 
+
+                       <div class="category-item-container">
+        		<div class="row">
+                            {% for deals in deal%}
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                           <div class="item">
+                               <div class="item-image-container">
+                                    <figure>
+                                        <a href="{{ path('pi_pi_dealprofil', {'id':deals.dealRef.ref})}}">
+                                            <img src="{{asset('bundles/PiPi/images/'~deals.dealRef.chemin)}}" alt="Item 3" style="height: 250px;width:400px;" class="item-image">
+                                            <img src="{{asset('bundles/PiPi/images/'~deals.dealRef.chemin)}}" alt="Item 3 Hover" style="height: 250px;width:400px;" class="item-image-hover">
+                                        </a>
+                                    </figure>
+                                    <div class="item-price-container">
+                                        
+                                         <span class="old-price">${{deals.dealRef.prix1}}</span><span class="sub-price">{{deals.dealRef.prix1-((deals.dealRef.prix1*deals.dealRef.tauxred)/100)}}</span>
+                            </div>
+                            <span class="new-rect">New</span>
+                            <span class="discount-rect">-{{deals.dealRef.tauxred}}%</span>
+                                   
+                                </div><!-- End .item-image -->
+                                <div class="item-meta-container">
+
+                                    <h3 class="item-name"><a href="{{ path('pi_pi_dealprofil', {'id':deals.dealRef.ref})}}"> {{deals.dealRef.nom}}</a></h3>
+                                    <div class="ratings-container">
+                                        
+                                           {{ render(controller('PiPiBundle:Default:NoteDeal' ,  {'id': deals.dealRef.ref} ) ) }} 
+                                    </div><!-- End .rating-container -->
+                                    <p>{{deals.dealRef.description|slice(0, 120)}}...</p>
+                                    {% if (deals.dealRef.datefin|date('U')>'now'|date('U'))%}
+                                        <div class="item-action">
+                                            {{ render(controller('PiPiBundle:Default:Panier' , {'id':deals.dealRef.ref}) ) }}
+                                           
+                                        </div><!-- End .item-action -->
+                                        {%else%}
+                                        <div class="item-action">
+                                            <p>Expiré</p>
+                                        </div><!-- End .item-action -->
+                                        {%endif%}
+                                     <span  data-time="{{deals.dealRef.datefin|date('U')}}" class="kkcountdown-1"></span>
+                                </div><!-- End .item-meta-container -->	
+                            </div><!-- End .item -->
+                            </div>
+                             {% endfor%}
+                        </div><!-- End .category-item-container -->
+                       </div>
+                       
+{%endblock%}

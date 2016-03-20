@@ -1,0 +1,148 @@
+services:
+    sonata.admin.categorie:
+        class: Pi\PiAdminBundle\Admin\categorieAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Gestion Deals", label: "Catégorie", label_catalogue: "PiPiAdminBundle" }
+        arguments:
+            - ~
+            - Pi\PiAdminBundle\Entity\categorie
+            - ~
+        calls:
+            - [ setTranslationDomain, [PiPiAdminBundle]]
+      
+    sonata.admin.dealpasse:
+        class: Pi\PiAdminBundle\Admin\AnciendealAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Gestion Deals", label: "Deal Passé", label_catalogue: "PiPiAdminBundle" }
+        arguments:
+            - ~
+            - Pi\PiAdminBundle\Entity\Anciendeal
+            - ~
+        calls:
+            - [ setTranslationDomain, [PiPiAdminBundle]]
+
+  
+    
+    sonata.admin.deal:
+        class: Pi\PiAdminBundle\Admin\DealAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Gestion Deals", label: "Deal", label_catalogue: "PiPiAdminBundle" }
+        arguments:
+            - ~
+            - Pi\PiAdminBundle\Entity\Deal
+            - ~
+        calls:
+            - [ setTranslationDomain, [PiPiAdminBundle]]
+            
+    sonata.admin.actualite:
+        class: Pi\PiAdminBundle\Admin\ActualiteAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Gestion Actualite", label: "Actualite", label_catalogue: "PiPiAdminBundle" }
+        arguments:
+            - ~
+            - Pi\PiAdminBundle\Entity\Actualite
+            - ~
+        calls:
+            - [ setTranslationDomain, [PiPiAdminBundle]]
+            
+    sonata.admin.avis:
+        class: Pi\PiAdminBundle\Admin\AvisAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Gestion Avis", label: "Avis", label_catalogue: "PiPiAdminBundle" }
+        arguments:
+            - ~
+            - Pi\PiAdminBundle\Entity\Avis
+            - ~
+        calls:
+            - [ setTranslationDomain, [PiPiAdminBundle]]
+    sonata.admin.client:
+        class: Pi\PiAdminBundle\Admin\ClientAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Gestion Client", label: "Client", label_catalogue: "PiPiAdminBundle" }
+        arguments:
+            - ~
+            - Pi\PiAdminBundle\Entity\Client
+            - ~
+        calls:
+            - [ setTranslationDomain, [PiPiAdminBundle]]
+    sonata.admin.contact:
+        class: Pi\PiAdminBundle\Admin\ContactAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Gestion Contact", label: "Contact", label_catalogue: "PiPiAdminBundle" }
+        arguments:
+            - ~
+            - Pi\PiAdminBundle\Entity\Contact
+            - ~
+        calls:
+            - [ setTranslationDomain, [PiPiAdminBundle]]
+    sonata.admin.DealCourant:
+        class: Pi\PiAdminBundle\Admin\DealCourantAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Gestion DealCourant", label: "DealCourant", label_catalogue: "PiPiAdminBundle" }
+        arguments:
+            - ~
+            - Pi\PiAdminBundle\Entity\DealCourant
+            - ~
+        calls:
+            - [ setTranslationDomain, [PiPiAdminBundle]]
+    sonata.admin.Newslettre:
+        class: Pi\PiAdminBundle\Admin\NewslettreAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Gestion Newslettre", label: "Newslettre", label_catalogue: "PiPiAdminBundle" }
+        arguments:
+            - ~
+            - Pi\PiAdminBundle\Entity\Newslettre
+            - ~
+        calls:
+            - [ setTranslationDomain, [PiPiAdminBundle]] 
+    sonata.admin.nouveaudeal:
+        class: Pi\PiAdminBundle\Admin\nouveaudealAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Gestion nouveaudeal", label: "nouveaudeal", label_catalogue: "PiPiAdminBundle" }
+        arguments:
+            - ~
+            - Pi\PiAdminBundle\Entity\nouveaudeal
+            - ~
+        calls:
+            - [ setTranslationDomain, [PiPiAdminBundle]] 
+    sonata.admin.Panier:
+        class: Pi\PiAdminBundle\Admin\PanierAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Gestion Panier", label: "Panier", label_catalogue: "PiPiAdminBundle" }
+        arguments:
+            - ~
+            - Pi\PiAdminBundle\Entity\Panier
+            - ~
+        calls:
+            - [ setTranslationDomain, [PiPiAdminBundle]] 
+    sonata.admin.Reservation:
+        class: Pi\PiAdminBundle\Admin\ReservationAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Gestion Reservation", label: "Reservation", label_catalogue: "PiPiAdminBundle" }
+        arguments:
+            - ~
+            - Pi\PiAdminBundle\Entity\Reservation
+            - ~
+        calls:
+            - [ setTranslationDomain, [PiPiAdminBundle]] 
+    sonata.admin.Slide:
+        class: Pi\PiAdminBundle\Admin\SlideAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Gestion Slide", label: "Slide", label_catalogue: "PiPiAdminBundle" }
+        arguments:
+            - ~
+            - Pi\PiAdminBundle\Entity\Slide
+            - ~
+        calls:
+            - [ setTranslationDomain, [PiPiAdminBundle]] 
+    sonata.admin.Vendeur:
+        class: Pi\PiAdminBundle\Admin\VendeurAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Gestion Vendeur", label: "Vendeur", label_catalogue: "PiPiAdminBundle" }
+        arguments:
+            - ~
+            - Pi\PiAdminBundle\Entity\Vendeur
+            - ~
+        calls:
+            - [ setTranslationDomain, [PiPiAdminBundle]] 
+           

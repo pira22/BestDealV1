@@ -1,0 +1,73 @@
+<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+
+    <div class="row">
+
+        <div class="col-md-6 col-sm-6 col-xs-12">
+
+            <fieldset>
+                <h2 class="sub-title">YOUR PERSONAL DETAILS</h2>
+                <div class="input-group"> 
+                    <span class="input-group-addon"><span class="input-icon input-icon-user"></span><span class="input-text">{{ form_label(form.nom) }}: &#42;</span></span>
+										{{ form_widget(form.nom, { 'attr': {'placeholder': 'Entrer votre Nom', 'class' : 'form-control input-lg'} }) }}
+                </div><!-- End .input-group -->
+                <div class="input-group"> 
+                    <span class="input-group-addon"><span class="input-icon input-icon-user"></span><span class="input-text">{{ form_label(form.prenom) }}: &#42;</span></span>
+										{{ form_widget(form.prenom, { 'attr': {'placeholder': 'Entrer votre Prénom', 'class' : 'form-control input-lg'} }) }}
+                </div><!-- End .input-group -->
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="input-icon input-icon-email"></span><span class="input-text">{{ form_label(form.email) }} &#42;</span></span>
+										{{ form_widget(form.email, { 'attr': {'placeholder': 'Entrer votre E-mail', 'class' : 'form-control input-lg'} }) }}
+                </div><!-- End .input-group -->
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="input-icon input-icon-phone"></span><span class="input-text">{{ form_label(form.numtel) }}: &#42;</span></span>
+										{{ form_widget(form.numtel, { 'attr': {'placeholder': 'Entrer votre Numéro', 'class' : 'form-control input-lg'} }) }}
+                </div><!-- End .input-group -->
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="input-icon input-icon-address"></span><span class="input-text">{{ form_label(form.adresse) }}&#42;</span></span>
+              {{ form_widget(form.adresse, { 'attr': {'placeholder': 'Entrer votre adresse', 'class' : 'form-control input-lg'} }) }}
+
+                </div><!-- End .input-group -->
+            </fieldset>
+            <fieldset class="half-margin">
+                <h2 class="sub-title">NEWSLETTER</h2>
+                <div class="input-desc-box">
+                    <span class="separator icon-box">&plus;</span>I wish to subscribe to the Venedor newsletter.
+                </div><!-- End .input-desc -->
+
+                <div class="input-group custom-checkbox">
+                    <input type="checkbox"> <span class="checbox-container">
+                        <i class="fa fa-check"></i>
+                    </span>
+                    I have reed and agree to the <a href="#">Privacy Policy</a>.
+
+                </div><!-- End .input-group -->
+            </fieldset>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <fieldset>
+                <h2 class="sub-title">YOUR PASSWORD</h2>
+                <div class="input-group"> 
+                    <span class="input-group-addon"><span class="input-icon input-icon-user"></span><span class="input-text">{{ form_label(form.username) }}: &#42;</span></span>
+										{{ form_widget(form.username, { 'attr': {'placeholder': 'Entrer votre login', 'class' : 'form-control input-lg'} }) }}
+                </div><!-- End .input-group -->
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="input-icon input-icon-password"></span><span class="input-text">{{ form_label(form.plainPassword.first) }}&#42;</span></span>
+                    {{ form_widget(form.plainPassword.first, { 'attr': {'placeholder': 'Entrer votre Mot de passe', 'class' : 'form-control input-lg'} }) }}
+                </div><!-- End .input-group -->
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="input-icon input-icon-password"></span><span class="input-text">{{ form_label(form.plainPassword.second) }}&#42;</span></span>
+                   {{ form_widget(form.plainPassword.second, { 'attr': {'placeholder': 'Retapper votre Mot de passe', 'class' : 'form-control input-lg'} }) }}
+                </div><!-- End .input-group -->
+            </fieldset>
+        </div>
+
+
+
+
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="submit" class="btn btn-custom-2 btn-lg md-margin" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" />
+            {{form_errors(form)}}
+             {{ form_rest(form) }}
+        </div>
+    </div>
+</form>

@@ -1,0 +1,23 @@
+<form action="{{ path('pi_pi_panier' , {'id':id})}}" method="POST" id="pdeal{{id}}">
+                                               {{ form_errors(panier) }}
+                                               {{ form_widget(panier.id , { 'attr': {'value': id } })}} 
+                                               {{ form_rest(panier) }}
+    <button  class="item-add-btn">
+        <span class="icon-cart-text">Add to Cart</span>
+    </button>
+</form>
+ <script>
+                                               
+                                                $('#pdeal{{id}}').submit(function() {
+                                                    $.ajax({
+                                                        type: "POST",
+                                                        url: "{{ path('pi_pi_panier' , {'id': id})}}",
+                                                        data: $('#pdeal{{id}}').serialize(),
+                                                        cache: false,
+                                                        success: function(data) {
+                                                           $("#loadiv").html(data);
+                                                       }
+                                                    });
+                                                    return false;
+                                                });
+                                            </script>   

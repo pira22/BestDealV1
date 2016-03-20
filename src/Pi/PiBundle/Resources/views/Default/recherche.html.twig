@@ -1,0 +1,185 @@
+{% extends "PiPiBundle::layout.html.twig" %}
+
+{% block content %} 
+<section id="content">
+    
+    <div id="category-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="index-2.html">Home</a></li>
+                <li><a href="#">Electronics</a></li>
+                <li class="active">Mobile</li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="row">
+
+                    <div class="col-md-9 col-sm-8 col-xs-12 main-content">
+
+                        <div class="category-toolbar clearfix">
+                            <div class="toolbox-filter clearfix">
+
+                                <div class="sort-box">
+                                    <span class="separator">sort by:</span>
+                                    <div class="btn-group select-dropdown">
+                                        <button type="button" class="btn select-btn">Position</button>
+                                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                                            <i class="fa fa-angle-down"></i>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#">Date</a></li>
+                                            <li><a href="#">Name</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="view-box">
+                                    <a href="category.html" class="icon-button icon-grid"><i class="fa fa-th-large"></i></a>
+                                    <a href="category-list.html" class="active icon-button icon-list"><i class="fa fa-th-list"></i></a>
+                                </div><!-- End .view-box -->
+
+                            </div><!-- End .toolbox-filter -->
+                            <div class="toolbox-pagination clearfix">
+                                <ul class="pagination">
+                                    <li class="active"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                                </ul>
+                                <div class="view-count-box">
+                                    <span class="separator">view:</span>
+                                    <div class="btn-group select-dropdown">
+                                        <button type="button" class="btn select-btn">10</button>
+                                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                                            <i class="fa fa-angle-down"></i>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#">15</a></li>
+                                            <li><a href="#">30</a></li>
+                                        </ul>
+                                    </div>
+                                </div><!-- End .view-count-box -->
+
+                            </div><!-- End .toolbox-pagination -->
+
+
+                        </div><!-- End .category-toolbar -->
+                        <div class="md-margin"></div><!-- .space -->
+                        <div class="category-item-container category-list-container">
+                            {% for deals in deal%}
+                            <div class="item item-list clearfix">
+                                <div class="item-image-container">
+                                    <figure>
+                                        <a href="product.html">
+                                            <img src="{{asset('bundles/PiPi/images/'~deals.chemin)}}" alt="Item 3" style="height: 250px;width:400px;" class="item-image">
+                                            <img src="{{asset('bundles/PiPi/images/'~deals.chemin)}}" alt="Item 3 Hover" style="height: 250px;width:400px;" class="item-image-hover">
+                                        </a>
+                                    </figure>
+                                    <div class="item-price-container">
+                                        
+                                         <span class="old-price">${{deals.prix1}}</span><span class="sub-price">{{deals.prix1-((deals.prix1*deals.tauxred)/100)}}</span>
+                            </div>
+                            <span class="new-rect">New</span>
+                            <span class="discount-rect">-{{deals.tauxred}}%</span>
+                                   
+                                </div><!-- End .item-image -->
+                                <div class="item-meta-container">
+
+                                    <h3 class="item-name"><a href="product.html"> {{deals.nom}}</a></h3>
+                                    <div class="ratings-container">
+                                        
+                                           {{ render(controller('PiPiBundle:Default:NoteDeal' ,  {'id': deals.ref} ) ) }} 
+                                    </div><!-- End .rating-container -->
+                                    <p>{{deals.description}}...</p>
+                                    <div class="item-action">
+                                        <a href="#" class="item-add-btn">
+                                            <span class="icon-cart-text">Add to Cart</span>
+                                        </a>
+                                        <div class="item-action-inner">
+                                            <a href="#" class="icon-button icon-like">Favourite</a>
+                                            <a href="#" class="icon-button icon-compare">Checkout</a>
+                                        </div><!-- End .item-action-inner -->
+                                    </div><!-- End .item-action -->
+                                     <span  data-time="{{deals.datefin|date('U')}}" class="kkcountdown-1"></span>
+                                </div><!-- End .item-meta-container -->	
+                            </div><!-- End .item -->
+                             {% endfor%}
+                        </div><!-- End .category-item-container -->
+                       
+                        <div class="pagination-container clearfix">
+                            <div class="pull-right">
+                                <ul class="pagination">
+                                    <li class="active"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                                </ul>
+                            </div><!-- End .pull-right -->
+
+                            <div class="pull-right view-count-box hidden-xs">
+                                <span class="separator">view:</span>
+                                <div class="btn-group select-dropdown">
+                                    <button type="button" class="btn select-btn">10</button>
+                                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-angle-down"></i>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">15</a></li>
+                                        <li><a href="#">30</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><!-- End pagination-container -->
+
+
+                    </div><!-- End .col-md-9 -->
+
+                    <aside class="col-md-3 col-sm-4 col-xs-12 sidebar">
+                        <div class="widget">
+                            <div class="panel-group custom-accordion sm-accordion" id="category-filter">
+                                <div class="panel">
+                                    <div class="accordion-header">
+                                        <div class="accordion-title"><span>Categories</span></div><!-- End .accordion-title -->
+                                        <a class="accordion-btn opened"  data-toggle="collapse" data-target="#category-list-1"></a>
+                                    </div><!-- End .accordion-header -->
+
+                                    <div id="category-list-1" class="collapse in">
+                                        <div class="panel-body">
+                                            <ul class="category-filter-list jscrollpane">
+                                                {% for categories in categorie%}
+                                                <li><a href="#">{{categories.nom}} (  {{ render(controller('PiPiBundle:Default:nbrecategorie' ,  {'id': categories.id} ) ) }} )</a></li>
+                                                {%endfor%}
+                                            </ul>
+                                        </div><!-- End .panel-body -->
+                                    </div><!-- #collapse -->
+                                </div><!-- End .panel -->
+
+                               
+
+                               
+
+                                </div><!-- End .panel -->
+
+                              
+                        </div><!-- End .widget -->
+
+                      
+
+                    </aside><!-- End .col-md-3 -->
+                </div><!-- End .row -->
+
+
+            </div><!-- End .col-md-12 -->
+        </div><!-- End .row -->
+    </div><!-- End .container -->
+
+</section><!-- End #content -->
+{%endblock%}

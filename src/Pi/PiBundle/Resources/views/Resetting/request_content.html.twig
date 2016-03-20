@@ -1,0 +1,18 @@
+<form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+    
+         <fieldset>
+                    <h2 class="sub-title">Retrouvez votre compte</h2>
+        <div class="col-md-6 col-sm-6 col-xs-12">             
+        {% if invalid_username is defined %}
+            <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}, 'FOSUserBundle') }}</p>
+        {% endif %}
+    <div class="input-group">  
+        <span class="input-group-addon"><span class="input-icon input-icon-user"></span><span class="input-text">{{ 'resetting.request.username'|trans({}, 'FOSUserBundle') }}</span></span>
+        <input class="form-control input-lg" type="text" id="username" name="username" required="required" />
+    </div>
+    <div>
+        <input class="btn btn-custom-2 btn-lg md-margin" type="submit" value="{{ 'resetting.request.submit'|trans({}, 'FOSUserBundle') }}" />
+    </div>
+        </div>
+         </fieldset>
+</form>

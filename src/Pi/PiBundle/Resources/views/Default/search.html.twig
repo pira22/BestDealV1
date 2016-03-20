@@ -1,0 +1,8 @@
+<form class="form-inline quick-search-form" role="form" method="POST" action="{{path('pi_pi_search')}}">
+    <div class="form-group">
+       {{form_widget(search.recherche,{'attr':{'class':'form-control', 'placeholder':'Search here'} } )}}
+    </div><!-- End .form-inline -->
+    <button type="submit" id="quick-search" class="btn btn-custom"></button>
+    {{form_errors(search)}}
+    {{form_rest(search)}}
+</form>

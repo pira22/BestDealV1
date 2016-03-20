@@ -1,0 +1,16 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+<div class="container">
+        		<div class="row">
+        			<div class="col-md-12">
+						<header class="content-title">
+							<h1 class="title">Créer un compte </h1>
+							<p class="title-desc">If you already have an account, please login at <a href="#">login page</a>.</p>
+						</header>
+        				<div class="xs-margin"></div><!-- space -->
+{% include "FOSUserBundle:Registration:register_content.html.twig" %}
+                                </div>
+                        </div>
+</div>
+{% endblock fos_user_content %}

@@ -1,0 +1,6 @@
+mail_mail_homepage:
+    pattern:  /admin/hello
+    defaults: { _controller: MailMailBundle:Default:index }
+
+
+

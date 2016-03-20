@@ -1,0 +1,16 @@
+{% extends 'PiPiAdminBundle::standard_layout.html.twig' %}
+
+  {% block sonata_page_content %}
+{{ parent() }}
+<h2>Envoi Réclamation</h2>
+
+    <form method="post" action="{{ path('mail_mail_homepage')}}">
+      {% block field %} <input type="text" name="adr" class="span6 one-half" placeholder="Email">
+     
+    <textarea name="msg" rows="3" class="span6 one-half" placeholder="Message"></textarea>{% endblock %}
+   
+   
+   <button type="submit" class="btn btn-info " onclick="return confirm('êtes vous sur de vouloir envoyer cette réclamation')">Envoyer</button>
+    </form>
+     
+{% endblock %}

@@ -1,0 +1,65 @@
+ {%if app.session.get('liste') is  defined and app.session.get('liste') is not null%}
+                                                        <button type="button" class="btn btn-custom dropdown-toggle" data-toggle="dropdown">
+                                                            <span class="cart-menu-icon"></span>
+                                                          
+                                                            {%set nbr =0%}
+                                                           {%for i in app.session.get('quantite')%} {%set nbr =nbr+i%}{%endfor%}{{nbr}} item(s)<span class="drop-price">
+                                                                {%set prix=0%}
+                                                               {%set prixf=0%}
+                                                           {%for key,i in app.session.get('prix')%} {%set prix =app.session.get('quantite')[key]*(i-((i*app.session.get('red')[key])/100))%}{%set prixf= prix+prixf%}{%endfor%}${{prixf}}
+                                                           
+                                                           </span>
+
+                                                        </button>
+                                                      {%else%}
+                                                        <button type="button"   class="btn btn-custom dropdown-toggle" data-toggle="dropdown">
+                                                            <span class="cart-menu-icon"></span>
+
+                                                            0 item(s)<span class="drop-price">
+                                                                -0.00$ </span>
+                                                      {%endif%}
+						      {%if app.session.get('liste') is  defined and app.session.get('liste') is not null%}
+                                                            <div class="dropdown-menu dropdown-cart-menu pull-right clearfix" role="menu" >
+                                                                <p class="dropdown-cart-description">Recently added item(s).</p>
+                                                                <ul class="dropdown-cart-product-list">
+                                                                  {%for key,i in app.session.get('nom')%}
+                                                                    
+                                                                   
+                                                                                              
+
+                                                                                               
+                                                                    
+                                                                               
+                                                                    <li class="item clearfix">
+                                                                        <a href="#" title="Delete item" class="delete-item"><i class="fa fa-times"></i></a>
+                                                                        <a href="#" title="Edit item" class="edit-item"><i class="fa fa-pencil"></i></a>
+                                                                        <figure>
+                                                                            <a href="{{ path('pi_pi_dealprofil', {'id':app.session.get('id')[key]})}}"><img src="{{asset('bundles/PiPi/images/'~app.session.get('image')[key])}}" style="height:60px;width: 60px" alt="phone 4"></a>
+                                                                        </figure>
+                                                                        <div class="dropdown-cart-details">
+                                                                            <p class="item-name">
+                                                                                <a href="{{ path('pi_pi_dealprofil', {'id':app.session.get('id')[key]})}}">{{i}}</a>
+                                                                            </p>
+                                                                            <p>
+                                                                         
+                                                                            {{app.session.get('quantite')[key]}}*
+                                                                                
+                                                                                <span class="item-price">${{app.session.get('quantite')[key] * (app.session.get('prix')[key]-((app.session.get('prix')[key]*app.session.get('red')[key])/100))}}</span>
+                                                                            </p>
+                                                                        </div><!-- End .dropdown-cart-details -->
+                                                                    </li>
+											
+                                                                    {%endfor %}
+                                                                </ul>
+
+                                                                <ul class="dropdown-cart-total">
+                                                                    <li><span class="dropdown-cart-total-title">Shipping:</span>{{nbr}}</li>
+                                                                    <li><span class="dropdown-cart-total-title">Total:</span>${{prixf}}s</li>
+                                                                </ul><!-- .dropdown-cart-total -->
+                                                                <div class="dropdown-cart-action">
+                                                                  
+                                                                    <p><a href="{{path('pi_pi_check') }}" class="btn btn-custom btn-block">Checkout</a></p>
+                                                                </div><!-- End .dropdown-cart-action -->
+
+                                                            </div><!-- End .dropdown-cart -->
+                                                                                 {%endif%}
